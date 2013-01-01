@@ -13,6 +13,8 @@ RCS=hg # hg or git
 RCS_REPOSITORY_URL="ssh://xxxxxxxxxxxxxxxxxxx"
 
 
-settings=$PROJECTMODULE/$PROJECTNAME/settings.py
-local_settings_localhost=$PROJECTMODULE/$PROJECTNAME/local_settings_$(hostname).py
-local_settings=$PROJECTMODULE/$PROJECTNAME/local_settings.py
+#settings=$PROJECTMODULE/$PROJECTNAME/settings.py
+#local_settings_localhost=$PROJECTMODULE/$PROJECTNAME/local_settings_$(hostname).py
+#local_settings=$PROJECTMODULE/$PROJECTNAME/local_settings.py
+
+# Default is set in check_requirements
