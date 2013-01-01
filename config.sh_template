@@ -1,0 +1,8 @@
+#edit this config  and save without _template suffix before you run the other scripts
+
+projectname=THEPROJECTNAME
+dbname=THEDATABASE
+dbuser=THEDATABSEUSER
+dbpw=THEDATABASEPASSWORD
+
+projectroot_parent=THE_FOLDER_WHERE_YOU_WANT_THE_PROJECT_TO_GO
