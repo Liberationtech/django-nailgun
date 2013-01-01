@@ -4,9 +4,9 @@ echo "
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', 
-        'NAME': '$dbname',
-        'USER': '$dbuser', 
-        'PASSWORD': '$dbpw', 
+        'NAME': '$DBNAME',
+        'USER': '$DBUSER', 
+        'PASSWORD': '$DBPASSWORD', 
         'HOST': 'localhost', 
         'PORT': '',
      }

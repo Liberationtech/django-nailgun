@@ -1,27 +1,27 @@
 . ./config.sh
-cd $projectroot_parent
+cd $WORKSPACE
 
 t="_tmp"
-tmp=$projectname$t
+tmp=$PROJECTNAME$t
 echo $tmp
-mv $projectname $tmp
+mv $PROJECTNAME $tmp
 
 
-if [ $rcs == "hg" ]
+if [ $RCS == "hg" ]
 then
-    cd $projectroot_parent
-    hg clone $rcs_repos
-    cp -rv $tmp/* $projectroot
+    cd $WORKSPACE
+    hg clone $RCS_REPOSITORY_URL
+    cp -rv $tmp/* $PROJECTMODULE
     rm -fr $tmp
 
-    cd $projectroot
+    cd $PROJECTMODULE
     hg add .
     hg commit -m "initial import"
     hg push
 fi
 
 
-if [ $rcs == "git" ]
+if [ $RCS == "git" ]
 then
     echo "git"
 fi

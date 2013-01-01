@@ -1,8 +1,18 @@
 #edit this config  and save without _template suffix before you run the other scripts
 
-projectname=THEPROJECTNAME
-dbname=THEDATABASE
-dbuser=THEDATABSEUSER
-dbpw=THEDATABASEPASSWORD
+PROJECTNAME=xxxxxxx
+DBNAME=xxxxxxx
+DBUSER=xxxxxxx
+DBPASSWORD=xxxxx
+WORKSPACE=/some/path
+PROJECTMODULE=$WORKSPACE/$PROJECTNAME
 
-projectroot_parent=THE_FOLDER_WHERE_YOU_WANT_THE_PROJECT_TO_GO
+POSTGRES_ROOT_PASSWORD=xxxxxxxxxxxxxx
+
+RCS=hg # hg or git
+RCS_REPOSITORY_URL="ssh://xxxxxxxxxxxxxxxxxxx"
+
+
+settings=$PROJECTMODULE/$PROJECTNAME/settings.py
+local_settings_localhost=$PROJECTMODULE/$PROJECTNAME/local_settings_$(hostname).py
+local_settings=$PROJECTMODULE/$PROJECTNAME/local_settings.py
