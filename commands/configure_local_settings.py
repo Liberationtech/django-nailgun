@@ -1,0 +1,11 @@
+. setup.sh
+
+#add a LOCAL_SETTINGS_hostname file
+touch $LOCAL_SETTINGS_LOCALHOST
+
+#add SETTINGS import to LOCAL_SETTINGS
+echo "LOCAL_SETTINGS = True
+from settings import *" >> $LOCAL_SETTINGS_LOCALHOST
+
+#symlink LOCAL_SETTINGS.py
+ln -s $LOCAL_SETTINGS_LOCALHOST $LOCAL_SETTINGS

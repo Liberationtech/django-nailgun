@@ -19,10 +19,6 @@ TODO
 ====
 
 
-Set up nginx vhost
-
-Set up nginx regular host
-
 setup the gunicorn runner
 
 setup upstart job for this gunicorn runner.

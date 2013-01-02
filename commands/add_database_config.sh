@@ -10,5 +10,5 @@ DATABASES = {
         'HOST': 'localhost', 
         'PORT': '',
      }
-}" >> $local_settings_localhost
+}" >> $LOCAL_SETTINGS_LOCALHOST
 

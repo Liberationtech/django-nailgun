@@ -11,7 +11,13 @@
 
 ./commands/configure_settings.py
 
+./commands/configure_local_settings.py
+
 ./commands/create_database.sh
 
 ./commands/add_database_config.sh
+
+./commands/add_non_django_config_folder.sh
+
+
 

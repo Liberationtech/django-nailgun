@@ -1,9 +1,9 @@
-#append local settings import to settings.py
+#append local SETTINGS import to SETTINGS.py
 . setup.sh
 
-#http://www.robgolding.com/blog/2010/05/03/extending-settings-variables-with-local_settings-py-in-django/
+#http://www.robgolding.com/blog/2010/05/03/extending-SETTINGS-variables-with-LOCAL_SETTINGS-py-in-django/
 #Add local_settins import
-echo $settings
+echo $SETTINGS
 
 echo "try:
     LOCAL_SETTINGS
@@ -11,14 +11,5 @@ except NameError:
     try:
         from local_settings import *
     except ImportError:
-        pass" >> $settings
+        pass" >> $SETTINGS
 
-#add a local_settings_hostname file
-touch $local_settings_localhost
-
-#add settings import to local_settings
-echo "LOCAL_SETTINGS = True
-from settings import *" >> $local_settings_localhost
-
-#symlink local_settings.py
-ln -s $local_settings_localhost $local_settings
