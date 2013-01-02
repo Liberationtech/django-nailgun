@@ -18,5 +18,20 @@ runs a sequence of commands to creata and setup a new project
 TODO
 ====
 
+
 Set up nginx vhost
+
+Set up nginx regular host
+
+setup the gunicorn runner
+
+setup upstart job for this gunicorn runner.
+symlink to it from /etc/init
+then, as root, `initctl reload-configuration`
+
+check that we have access to repository
+
+Set root password of postgresql
+
+
 

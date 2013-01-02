@@ -8,5 +8,5 @@ local_settings=$PROJECTMODULE/$PROJECTNAME/local_settings.py
 
 
 if [ "$LINUXPACKAGES" == "" ]; then
-   LINUXPACKAGES="nginx python virtualenvwrapper python-psycopg2 postgresql" 
+   LINUXPACKAGES="nginx python virtualenvwrapper python-psycopg2 postgresql mercurial git" 
 fi
