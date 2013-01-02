@@ -19,4 +19,4 @@
 
 ./commands/add_gunicornrunner.sh
 
-
+./commands/add_upstart_script.sh

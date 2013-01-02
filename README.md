@@ -19,11 +19,7 @@ TODO
 ====
 
 
-setup the gunicorn runner
-
-setup upstart job for this gunicorn runner.
-symlink to it from /etc/init
-then, as root, `initctl reload-configuration`
+check that all required variables are in place and quit if it does not
 
 check that we have access to repository
 
