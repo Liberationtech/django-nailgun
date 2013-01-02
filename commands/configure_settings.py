@@ -3,6 +3,7 @@
 
 #http://www.robgolding.com/blog/2010/05/03/extending-settings-variables-with-local_settings-py-in-django/
 #Add local_settins import
+echo $settings
 
 echo "try:
     LOCAL_SETTINGS

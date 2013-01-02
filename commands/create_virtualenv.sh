@@ -1,7 +1,12 @@
 #create a new virtualenv
 . setup.sh
 
-virtualenv $WORKON_HOME/$PROJECTNAME --system-site-packages  -p python2.7
+#TODO this should be more generic
+if [ $(virtualenv --version) == "1.4.9" ]; then 
+    virtualenv $WORKON_HOME/$PROJECTNAME -p python2.7
+else 
+    virtualenv $WORKON_HOME/$PROJECTNAME --system-site-packages  -p python2.7
+fi 
 
 #at least populate it with django
 
