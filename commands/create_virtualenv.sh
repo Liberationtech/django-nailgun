@@ -1,5 +1,6 @@
 #create a new virtualenv
-. ./config.sh
+. setup.sh
+
 virtualenv $WORKON_HOME/$PROJECTNAME --system-site-packages  -p python2.7
 
 #at least populate it with django

@@ -1,4 +1,4 @@
-. ./config.sh
+. setup.sh
 
 echo "
 DATABASES = {

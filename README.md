@@ -15,4 +15,8 @@ protocols
 runs a sequence of commands to creata and setup a new project
 
 
+TODO
+====
+
+Set up nginx vhost
 

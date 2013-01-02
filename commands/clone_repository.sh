@@ -1,4 +1,5 @@
-. ./config.sh
+. setup.sh
+
 cd $WORKSPACE
 
 t="_tmp"
@@ -10,7 +11,7 @@ mv $PROJECTNAME $tmp
 if [ $RCS == "hg" ]
 then
     cd $WORKSPACE
-    hg clone $RCS_REPOSITORY_URL
+    hg clone $RCS_REPOSITORY_URL $PROJECTNAME
     cp -rv $tmp/* $PROJECTMODULE
     rm -fr $tmp
 

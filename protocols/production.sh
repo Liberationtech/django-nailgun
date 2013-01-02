@@ -5,7 +5,7 @@
 
 ./commands/create_virtualenv.sh
 
-./commands/create_project.sh
+#./commands/create_project.sh
 
 ./commands/clone_repository.sh
 
