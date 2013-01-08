@@ -18,7 +18,7 @@ echo "server {
         }
 
     #XXX REPLACE WITH YOUR STATIC FILES FOLDER
-    alias $PROJECTMODULE/static;
+    alias $PROJECTMODULE/static/;
     }
 
 
