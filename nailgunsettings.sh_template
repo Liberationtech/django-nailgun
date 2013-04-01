@@ -12,6 +12,8 @@ POSTGRES_ROOT_PASSWORD=xxxxxxxxxxxxxx
 RCS=hg # hg or git
 RCS_REPOSITORY_URL="ssh://xxxxxxxxxxxxxxxxxxx"
 
+#just the basename (we put this in the standard non_django_stuff)
+VIRTUAL_ENV_REQUIREMENTS_FILE=xxxxxxxx 
 
 #settings=$PROJECTMODULE/$PROJECTNAME/settings.py
 #local_settings_localhost=$PROJECTMODULE/$PROJECTNAME/local_settings_$(hostname).py

@@ -13,8 +13,6 @@ function is_installed {
   #echo $package
 }
 
-
-
 for package in $LINUXPACKAGES
 do
     is_installed $package

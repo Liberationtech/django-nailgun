@@ -1,0 +1,152 @@
+#!/usr/bin/python
+
+#parse so that only name version description remains
+#output somewhere
+#update weekly from cron
+
+#for pip installs grep file, construct package==version string, append to our prefs and run pip install -r prefs
+
+import argparse
+import codecs
+import os
+import sys
+import string
+import urllib2
+import cPickle
+import re
+from pyquery.pyquery import PyQuery
+
+#some globals
+INDEX_URL = "https://pypi.python.org/pypi?%3Aaction=index"
+PIPPIN_DIR = os.path.join(os.environ['HOME'], ".pippin")
+INDEX_FILE = os.path.join(PIPPIN_DIR, "index.html")
+PICKLE_FILE = os.path.join(PIPPIN_DIR, "db")
+
+
+class Package:
+    def __init__(self, name, version, description):
+        self.name = name
+        self.version = version
+        self.description = description
+
+    def __str__(self):
+        return unicode(self).encode('utf-8')
+
+    def __unicode__(self):
+        return u"{0:6d} {1}=={2} {3}".format(self.id, self.name, self.version, self.description)
+
+
+class Packages(list):
+
+    def search(self, query):
+        sys.stdout = codecs.getwriter('utf8')(sys.stdout)
+        pattern = re.compile(query)
+        for item in self:
+            if pattern.search(item.name) or pattern.search(item.description):
+                sys.stdout.write(item.__unicode__() + "\n")
+
+    def append(self, item):
+        item.id = len(self) + 1
+        list.append(self, item)
+
+    def get_requirement_string(self, id):
+
+        for item in self:
+            if item.id == int(id):
+                return "{0}=={1}".format(item.name, item.version)
+
+def make_pippin_dir():
+    if not os.path.exists(PIPPIN_DIR):
+        os.makedirs(PIPPIN_DIR)
+
+
+def download(args):
+    print "downloading file, please be patient"
+    response = urllib2.urlopen(INDEX_URL)
+    html = response.read()
+    fh = open(INDEX_FILE, 'w')
+    fh.write(html)
+
+
+def parse(args):
+
+    data = open(INDEX_FILE).read()
+    doc = PyQuery(data)
+    packages = Packages()
+    for row in doc("table.list > tr"):
+        pqrow = PyQuery(row)
+        name_and_version = pqrow("td:nth-child(1)").text()
+
+        if name_and_version:
+            tokens = name_and_version.split()
+            version = tokens[-1]
+            name = string.join(tokens[:-1], " ")
+            description = pqrow("td:nth-child(2)").text()
+            packages.append(Package(name, version, description))
+
+    fh = open(PICKLE_FILE, 'w')
+    cPickle.dump(packages, fh)
+    fh.close()
+
+def load():
+    fh = open(PICKLE_FILE)
+    return cPickle.load(fh)
+
+def search(args):
+    packages = load()
+    packages.search(string.join(args.query, " "))
+
+
+def update(args):
+    download(args)
+    parse(args)
+
+
+def output(args):
+    packages = load()
+    for package in packages:
+        if package.id == int(args.id):
+            print "{0}=={1}".format(package.name, package.version)
+
+def add(args):
+    packages = load()
+    fh = open(args.requirements_file, "a")
+    requirement_string = packages.get_requirement_string(args.id)
+
+    fh.write(requirement_string)
+    fh.write("\n")
+    fh.close()
+
+make_pippin_dir()
+
+
+parser = argparse.ArgumentParser()
+subparsers = parser.add_subparsers()
+
+parser_download = subparsers.add_parser("download")
+parser_download.set_defaults(func=download)
+
+
+parser_update = subparsers.add_parser("update")
+parser_update.set_defaults(func=update)
+
+parser_parse = subparsers.add_parser("parse")
+parser_parse.set_defaults(func=parse)
+
+parser_search = subparsers.add_parser("search")
+parser_search.set_defaults(func=search)
+parser_search.add_argument("query", nargs="*")
+
+parser_output = subparsers.add_parser("output")
+parser_output.set_defaults(func=output)
+parser_output.add_argument("id", nargs="?")
+
+
+parser_add = subparsers.add_parser("add")
+parser_add.set_defaults(func=add)
+parser_add.add_argument("id", nargs="?")
+parser_add.add_argument("requirements_file", nargs="?")
+
+
+args = parser.parse_args()
+args.func(args)
