@@ -1,5 +1,14 @@
 . setup.sh
 
+if [ $DBENGINE == "sqlite3" ]
+then
+fi
+
+
+if [ $DBENGINE == "pgsql" ]
+then
+fi
+
 echo "
 DATABASES = {
     'default': {

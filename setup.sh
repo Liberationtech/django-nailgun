@@ -1,9 +1,21 @@
-if [ -z "$NAILGUNSETTINGS" ]; then
-    echo "\$NAILGUNSETTINGS environment varible must be set"
-    exit
-fi
+function is_defined {
+    if [ -z "$2" ]; then
+        echo "$1 is not defined"
+        exit
+    fi
+}
 
+is_defined "NAILGUNSETTINGS" $NAILGUNSETTINGS
 . $NAILGUNSETTINGS
+
+is_defined "PROJECTNAME" $PROJECTNAME
+is_defined "DBENGINE" $DBENGINE
+is_defined "WORKSPACE" $WORKSPACE
+is_defined "PROJECTMODULE" $PROJECTMODULE
+is_defined "RCS" $RCS
+is_defined "RCS_REPOSITORY_URL" $RCS_REPOSITORY_URL
+is_defined "VIRTUAL_ENV_REQUIREMENTS_FILE" $VIRTUAL_ENV_REQUIREMENTS_FILE
+
 
 #XXX TODO this should all be escaped so that they could be overridden from $NAILGUNSETTINGS
 ABOVE_WORKSPACE=$(dirname $WORKSPACE)

@@ -15,8 +15,6 @@ Clone it to whereever you want to have your working copy
 Start by writing a nailgunsettingsfile , feel free to use the template provided
 
 
-
-
 In bash/zsh
 
     $ cd /home/oivvio/coderepositories/django-nailgun
@@ -44,12 +42,21 @@ runs a sequence of commands to creat and setup a new project
 TODO
 ====
 
-
-check that all required variables are in place and quit if it does not
-
 check that we have access to repository
 
 Set root password of postgresql
 
+When building gunicornrunner script set port (8000) user (oivvio) group (oivvio)
 
 
+create those folders
+set STATIC_ROOT
+set MEDIA_ROOT
+
+Point to both STATIC_ROOT from nginx conf
+
+Add expires max per default 
+and gzip compression to nginx conf
+
+
+add django_compressor
